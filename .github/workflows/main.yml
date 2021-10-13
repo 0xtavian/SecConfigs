@@ -1,0 +1,31 @@
+name: SecConfigs 
+
+on: [push, pull_request]
+
+jobs:
+  nuclei-scan:
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v2
+     - run: |
+        echo "::group::Install Nuclei with go get"
+        [ ! -x /home/runner/go/bin/nuclei ] && GO111MODULE=on go get github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
+        echo "::group::Install Subfinder with go get"
+        [ ! -x /home/runner/go/bin/subfinder ] && GO111MODULE=on go get github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+        echo "::group::Install Naabu with go get"
+        sudo apt-get update && sudo apt-get install -y libpcap-dev -y
+        [ ! -x /home/runner/go/bin/naabu ] && GO111MODULE=on go get github.com/projectdiscovery/naabu/v2/cmd/naabu@v2.0.4
+        echo "/home/runner/go/bin/" >> $GITHUB_PATH
+        /home/runner/go/bin/nuclei
+        /home/runner/go/bin/subfinder &
+        /home/runner/go/bin/naabu
+        cp /home/runner/.config/nuclei/config.yaml $GITHUB_WORKSPACE/nuclei.yaml
+        cp /home/runner/.config/subfinder/config.yaml $GITHUB_WORKSPACE/subfinder.yaml
+        cp /home/runner/.config/naabu/naabu.conf $GITHUB_WORKSPACE/naabu.conf
+        git config --local user.name "0xtavian"
+        git config --local user.email "21030907+0xtavian@users.noreply.github.com"
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+        git checkout "${GITHUB_REF:11}"
+        git add $GITHUB_WORKSPACE/nuclei.yaml $GITHUB_WORKSPACE/subfinder.yaml $GITHUB_WORKSPACE/naabu.conf
+        git commit -am "Configs uploaded"
+        git push
