@@ -1,4 +1,4 @@
-# SecConfig
+# SecConfigs
 Config files for popular recon tools generated with Github Actions 
 
 Have you ever needed a config file just to find out that the developers didn't commit the default config file in the repo? <br>
