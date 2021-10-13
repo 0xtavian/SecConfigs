@@ -2,6 +2,7 @@
 Config files for popular recon tools generated with Github Actions 
 
 Have you ever needed a config file just to find out that the developers didn't commit the default config file in the repo? <br>
+Do you want to prevent a config file fucking with you in unforeseeable ways?<br>
 Instead of using that random file on gist or having to install the tool locally just to acquire the config file, you can rest assured these config files are unchanged from the originals. <br>
 
 How it works: <br>
