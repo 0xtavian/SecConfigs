@@ -3,7 +3,7 @@ name: SecConfigs
 on: [push, pull_request]
 
 jobs:
-  nuclei-scan:
+  sec-configs:
     runs-on: ubuntu-latest
     steps:
      - uses: actions/checkout@v2
