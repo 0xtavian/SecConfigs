@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - uses: actions/checkout@v2
+     - continue-on-error: true 
      - run: |
         echo "::group::Install Nuclei with go get"
         [ ! -x /home/runner/go/bin/nuclei ] && GO111MODULE=on go get github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
