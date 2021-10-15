@@ -16,9 +16,9 @@ jobs:
         sudo apt-get update && sudo apt-get install -y libpcap-dev -y
         [ ! -x /home/runner/go/bin/naabu ] && GO111MODULE=on go get github.com/projectdiscovery/naabu/v2/cmd/naabu@v2.0.4
         echo "/home/runner/go/bin/" >> $GITHUB_PATH
-        /home/runner/go/bin/nuclei &
-        /home/runner/go/bin/subfinder &
-        /home/runner/go/bin/naabu &
+        sudo /home/runner/go/bin/nuclei &
+        sudo /home/runner/go/bin/subfinder &
+        sudo /home/runner/go/bin/naabu &
         cp /home/runner/.config/nuclei/config.yaml $GITHUB_WORKSPACE/nuclei.yaml
         cp /home/runner/.config/subfinder/config.yaml $GITHUB_WORKSPACE/subfinder.yaml
         cp /home/runner/.config/naabu/naabu.conf $GITHUB_WORKSPACE/naabu.conf
