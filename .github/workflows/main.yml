@@ -22,8 +22,8 @@ jobs:
         cp /home/runner/.config/nuclei/config.yaml $GITHUB_WORKSPACE/nuclei.yaml
         cp /home/runner/.config/subfinder/config.yaml $GITHUB_WORKSPACE/subfinder.yaml
         cp /home/runner/.config/naabu/naabu.conf $GITHUB_WORKSPACE/naabu.conf
-        git config --local user.name "0xtavian"
-        git config --local user.email "21030907+0xtavian@users.noreply.github.com"
+        git config --local user.name "node"
+        git config --local user.email "node"
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
         git checkout "${GITHUB_REF:11}"
         git add $GITHUB_WORKSPACE/nuclei.yaml $GITHUB_WORKSPACE/subfinder.yaml $GITHUB_WORKSPACE/naabu.conf
