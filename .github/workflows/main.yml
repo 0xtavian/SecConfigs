@@ -17,6 +17,7 @@ jobs:
         [ ! -x /home/runner/go/bin/nuclei ] && GO111MODULE=on go get -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@v2.5.2
         echo "/home/runner/go/bin/" >> $GITHUB_PATH
         echo scanme.nmap.org | /home/runner/go/bin/subfinder 
+        echo scanme.nmap.org | /home/runner/go/bin/naabu 
         cp /home/runner/.config/subfinder/config.yaml $GITHUB_WORKSPACE/subfinder.yaml
         cp /home/runner/.config/naabu/naabu.conf $GITHUB_WORKSPACE/naabu.conf
         cp /home/runner/.config/nuclei/config.yaml $GITHUB_WORKSPACE/nuclei.yaml
