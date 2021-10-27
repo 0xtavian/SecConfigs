@@ -17,7 +17,10 @@ jobs:
         echo "downloading amass config from master repo"
         wget https://raw.githubusercontent.com/OWASP/Amass/master/examples/config.ini -O amassconfig.ini
         echo "downloading findomain config from master repo"
-        git clone https://github.com/Findomain/Findomain/tree/master/config_examples findomain
+        git clone https://github.com/Findomain/Findomain.git findomain
+        mkdir findomain-configs
+        cp -R /home/runner/findomain/config_examples/* /home/runner/findomain-configs
+        sudo rm -r findomain/
         git config --local user.name "node"
         git config --local user.email "node"
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
