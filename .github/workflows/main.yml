@@ -26,6 +26,6 @@ jobs:
         git config --local user.email "node"
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
         git checkout "${GITHUB_REF:11}"
-        git add $GITHUB_WORKSPACE/nuclei.yaml $GITHUB_WORKSPACE/subfinder.yaml $GITHUB_WORKSPACE/naabu.conf $GITHUB_WORKSPACE/Findomainconfig.yml 
+        git add $GITHUB_WORKSPACE/subfinder.yaml $GITHUB_WORKSPACE/Findomainconfig.yml $GITHUB_WORKSPACE/Findomainconfig.json $GITHUB_WORKSPACE/Findomainconfig.ini
         git commit -am "Configs uploaded"
         git push
