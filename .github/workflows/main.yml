@@ -9,13 +9,17 @@ jobs:
     steps:
      - uses: actions/checkout@v2
      - run: |
-        echo "::group::Install Nuclei with go get"
-        [ ! -x /home/runner/go/bin/nuclei ] && GO111MODULE=on go get github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
-        echo "::group::Install Subfinder with go get"
-        [ ! -x /home/runner/go/bin/subfinder ] && GO111MODULE=on go get github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-        echo "::group::Install Naabu with go get"
+        echo "Installing Nuclei"
+        GO111MODULE=on go get github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
+        echo "Installing Subfinder"
+        GO111MODULE=on go get github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+        echo "Installing Naabu"
         sudo apt-get update && sudo apt-get install -y libpcap-dev -y
-        [ ! -x /home/runner/go/bin/naabu ] && GO111MODULE=on go get github.com/projectdiscovery/naabu/v2/cmd/naabu@v2.0.4
+        GO111MODULE=on go get github.com/projectdiscovery/naabu/v2/cmd/naabu@v2.0.4
+        echo "downloading amass config from master repo"
+        wget https://raw.githubusercontent.com/OWASP/Amass/master/examples/config.ini amassconfig.ini
+        echo "downloading findomain config from master repo"
+        git clone https://github.com/Findomain/Findomain/tree/master/config_examples findomain
         echo "/home/runner/go/bin/" >> $GITHUB_PATH
         echo http://scanme.nmap.org | /home/runner/go/bin/nuclei 
         echo scanme.nmap.org | /home/runner/go/bin/subfinder 
