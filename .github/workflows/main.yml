@@ -17,7 +17,7 @@ jobs:
         echo "downloading amass config from master repo"
         wget https://raw.githubusercontent.com/OWASP/Amass/master/examples/config.ini -O amassconfig.ini
         echo "downloading findomain config from master repo"
-        git clone https://github.com/Findomain/Findomain.git 
+        git clone https://github.com/Findomain/Findomain.git findomain
         mkdir /home/runner/findomain-configs
         cp -R findomain/config_examples/* /home/runner/findomain-configs
         sudo rm -r findomain/
