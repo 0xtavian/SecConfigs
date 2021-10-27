@@ -11,9 +11,15 @@ jobs:
      - run: |
         echo "::group::Gathering Config Files"
         [ ! -x /home/runner/go/bin/subfinder ] && GO111MODULE=on go get github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+        echo "::group::Install Naabu with go get"
+        sudo apt-get update && sudo apt-get install -y libpcap-dev -y
+        [ ! -x /home/runner/go/bin/naabu ] && GO111MODULE=on go get github.com/projectdiscovery/naabu/v2/cmd/naabu@v2.0.4
+        [ ! -x /home/runner/go/bin/nuclei ] && GO111MODULE=on go get -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@v2.5.2
         echo "/home/runner/go/bin/" >> $GITHUB_PATH
         echo scanme.nmap.org | /home/runner/go/bin/subfinder 
         cp /home/runner/.config/subfinder/config.yaml $GITHUB_WORKSPACE/subfinder.yaml
+        cp /home/runner/.config/naabu/naabu.conf $GITHUB_WORKSPACE/naabu.conf
+        cp /home/runner/.config/nuclei/config.yaml $GITHUB_WORKSPACE/nuclei.yaml
         echo "downloading amass config from master repo"
         wget https://raw.githubusercontent.com/OWASP/Amass/master/examples/config.ini -O $GITHUB_WORKSPACE/amassconfig.ini
         echo "downloading findomain config from master repo"
@@ -27,5 +33,6 @@ jobs:
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
         git checkout "${GITHUB_REF:11}"
         git add $GITHUB_WORKSPACE/subfinder.yaml $GITHUB_WORKSPACE/Findomainconfig.yml $GITHUB_WORKSPACE/Findomainconfig.json $GITHUB_WORKSPACE/Findomainconfig.ini $GITHUB_WORKSPACE/amassconfig.ini
+        git add $GITHUB_WORKSPACE/naabu.conf $GITHUB_WORKSPACE/nuclei.yaml
         git commit -am "Configs uploaded"
         git push
