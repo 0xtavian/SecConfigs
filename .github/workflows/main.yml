@@ -19,7 +19,7 @@ jobs:
         echo "downloading findomain config from master repo"
         git clone https://github.com/Findomain/Findomain.git $GITHUB_WORKSPACE/findomain
         mkdir $GITHUB_WORKSPACE/findomain-configs
-        cp -R $GITHUB_WORKSPACE/findomain/config_examples/* $GITHUB_WORKSPACE/findomain-configs
+        cp -R $GITHUB_WORKSPACE/findomain/config_examples/ $GITHUB_WORKSPACE/findomain-configs
         sudo rm -r $GITHUB_WORKSPACE/findomain/
         git config --local user.name "node"
         git config --local user.email "node"
