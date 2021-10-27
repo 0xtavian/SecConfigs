@@ -15,7 +15,7 @@ jobs:
         echo scanme.nmap.org | /home/runner/go/bin/subfinder 
         cp /home/runner/.config/subfinder/config.yaml $GITHUB_WORKSPACE/subfinder.yaml
         echo "downloading amass config from master repo"
-        wget https://raw.githubusercontent.com/OWASP/Amass/master/examples/config.ini amassconfig.ini
+        wget https://raw.githubusercontent.com/OWASP/Amass/master/examples/config.ini -O amassconfig.ini
         echo "downloading findomain config from master repo"
         git clone https://github.com/Findomain/Findomain/tree/master/config_examples findomain
         git config --local user.name "node"
