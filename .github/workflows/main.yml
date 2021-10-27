@@ -20,7 +20,7 @@ jobs:
         wget https://raw.githubusercontent.com/Findomain/Findomain/master/config_examples/config.example.hjson -O $GITHUB_WORKSPACE/Findomainconfig.hjson
         wget https://raw.githubusercontent.com/Findomain/Findomain/master/config_examples/config.example.ini -O $GITHUB_WORKSPACE/Findomainconfig.ini
         wget https://raw.githubusercontent.com/Findomain/Findomain/master/config_examples/config.example.toml -O $GITHUB_WORKSPACE/Findomainconfig.toml
-        wget https://raw.githubusercontent.com/Findomain/Findomain/master/config_examples/config.example.json -O $GITHUB_WORKSPACE/Findomainconfig.json
+        wget https://raw.githubusercontent.com/Findomain/Findomain/master/config_examples/findomain.example.json -O $GITHUB_WORKSPACE/Findomainconfig.json
         wget https://raw.githubusercontent.com/Findomain/Findomain/master/config_examples/config.example.yml -O $GITHUB_WORKSPACE/Findomainconfig.yml
         git config --local user.name "node"
         git config --local user.email "node"
